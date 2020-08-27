@@ -1,1 +1,11 @@
-<p>hand-grid works!</p>
+<div class="hand-grid">
+  <ng-container *ngFor="let firstCard of cardArray; let x = index">
+    <ng-container *ngFor="let secondCard of cardArray; let y = index;">
+      <button *ngIf="firstCard === secondCard; else: notPair">{{ firstCard + secondCard }}</button>
+      <ng-template #notPair>
+        <button>{{ y > x ? firstCard + secondCard + 's' : secondCard + firstCard + 'o' }}</button>
+      </ng-template>
+    </ng-container>
+    <br>
+  </ng-container>
+</div>
