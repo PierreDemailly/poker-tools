@@ -14,6 +14,7 @@ import { RangeManagerComponent } from './features/range-manager/range-manager.co
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatToolbarModule,
     MatInputModule,
     MatTooltipModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -28,7 +28,6 @@ export class HandGridComponent implements OnInit {
   }
 
   selectHand(btn: HTMLButtonElement, isClick = false): void {
-    console.log(this.hands);
     if (!isClick && !this.isMouseDown) return;
     
     const isSelected = btn.classList.contains('selected');

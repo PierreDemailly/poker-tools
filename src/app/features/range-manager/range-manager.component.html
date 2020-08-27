@@ -6,18 +6,26 @@
           *ngFor="let range of ranges; let i = index;"
           [color]="selectedRangeIndex === i ? 'primary' : ''"
           class="tab"
-          (click)="selectedRangeIndex = i">
+          (click)="selectTab(i)">
     {{ range.name }}
   </button>
   <button mat-icon-button (click)="addTab()"><mat-icon>add</mat-icon></button>
-</div>
-<div class="range-info">
-  <form [formGroup]="form">
-    <mat-form-field>
-      <input matInput formControlName="name">
-    </mat-form-field>
-  </form>
-  
+
+  <div class="range-info">
+    <form [formGroup]="form">
+      <mat-form-field>
+        <input matInput formControlName="name">
+      </mat-form-field>
+    </form>
+  </div>
 </div>
 
-<app-hand-grid (change)="onRangeChange($event)" [range]="ranges[selectedRangeIndex].value"></app-hand-grid>
+<div class="grid">
+  <mat-nav-list class="folders">
+    <a mat-list-item *ngFor="let folder of ranges[selectedRangeIndex].folders; let i = index;" (click)="selectFolder(i)">{{ folder.name }}</a>
+    <mat-divider></mat-divider>
+    <a mat-list-item (click)="addFolder()">Add a folder</a>
+  </mat-nav-list>
+  <app-hand-grid (change)="onRangeChange($event)" [range]="ranges[selectedRangeIndex].folders[selectedFolderIndex].value"></app-hand-grid>
+</div>
+
