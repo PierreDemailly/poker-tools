@@ -1,6 +1,6 @@
 import { MouseService } from './../../services/mouse/mouse.service';
 import { HandGridService } from './../../services/hand-grid/hand-grid.service';
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChildren, QueryList, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-hand-grid',
@@ -13,6 +13,7 @@ export class HandGridComponent implements OnInit {
 
   @Input() range: string[];
   @Output() change = new EventEmitter<string[]>();
+  @ViewChildren('hand') hands: QueryList<ElementRef<HTMLButtonElement>>;
 
   constructor(
     private handGridService: HandGridService,
@@ -22,9 +23,12 @@ export class HandGridComponent implements OnInit {
   // TODO: scavenger
   ngOnInit(): void {
     this.mouseService.isMouseDown$.subscribe(bool => this.isMouseDown = bool);
+    
+    
   }
 
   selectHand(btn: HTMLButtonElement, isClick = false): void {
+    console.log(this.hands);
     if (!isClick && !this.isMouseDown) return;
     
     const isSelected = btn.classList.contains('selected');
@@ -35,27 +39,24 @@ export class HandGridComponent implements OnInit {
   }
 
   selectAll(): void {
-    const hands = document.getElementsByClassName('hand') as unknown as HTMLButtonElement[];
-    for (const hand of hands) {
-      if (hand.classList.contains('selected')) continue;
-      hand.classList.add('selected');
+    for (const hand of this.hands) {
+      if (hand.nativeElement.classList.contains('selected')) continue;
+      hand.nativeElement.classList.add('selected');
     }
 
-    this.emitChanges(hands);
+    this.emitChanges();
   }
 
   clearAll(): void {
-    const hands = document.getElementsByClassName('hand') as unknown as HTMLButtonElement[];
-    for (const hand of hands) {
-      hand.classList.remove('selected');
+    for (const hand of this.hands) {
+      hand.nativeElement.classList.remove('selected');
     }
 
-    this.emitChanges(hands);
+    this.emitChanges();
   }
 
-  emitChanges(hands?: HTMLButtonElement[]): void {
-    if (!hands) hands = document.getElementsByClassName('hand') as unknown as HTMLButtonElement[];
-    const selectedHands = Array.from(hands).filter(hand => hand.classList.contains('selected')).map(hand => hand.innerHTML.trim());
+  emitChanges(): void {
+    const selectedHands = Array.from(this.hands).filter(hand => hand.nativeElement.classList.contains('selected')).map(hand => hand.nativeElement.innerHTML.trim());
     this.change.emit(selectedHands);
   }
 }

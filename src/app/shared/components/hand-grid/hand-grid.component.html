@@ -1,4 +1,4 @@
-{{ range | json }}
+<!-- {{ range | json }} -->
 <div class="hand-grid">
   <div class="grid">
     <ng-container *ngFor="let firstCard of cardArray; let x = index">
@@ -25,10 +25,10 @@
     </ng-container>
   </div>
   <div class="options">
-    <button mat-icon-button (click)="selectAll()">
+    <button mat-icon-button (click)="selectAll()" matTooltip="Select all hands" matTooltipPosition="right">
       <mat-icon>select_all</mat-icon>
     </button>
-    <button mat-icon-button (click)="clearAll()">
+    <button mat-icon-button (click)="clearAll()" matTooltip="Clear selected hands" matTooltipPosition="right">
       <mat-icon>clear</mat-icon>
     </button>
   </div>
