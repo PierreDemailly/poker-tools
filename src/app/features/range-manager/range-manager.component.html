@@ -1,3 +1,6 @@
+<h1>Range manager</h1>
+<h2>Manage your hand ranges</h2>
+
 <div class="tabs">
   <button mat-flat-button
           *ngFor="let range of ranges; let i = index;"
@@ -18,4 +21,3 @@
 </div>
 
 <app-hand-grid (change)="onRangeChange($event)" [range]="ranges[selectedRangeIndex].value"></app-hand-grid>
-
