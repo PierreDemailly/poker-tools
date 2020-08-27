@@ -1,5 +1,9 @@
 <div class="tabs">
-  <button mat-flat-button *ngFor="let range of ranges; let i = index;" [color]="selectedRangeIndex === i ? 'primary' : ''" class="tab">
+  <button mat-flat-button
+          *ngFor="let range of ranges; let i = index;"
+          [color]="selectedRangeIndex === i ? 'primary' : ''"
+          class="tab"
+          (click)="selectedRangeIndex = i">
     {{ range.name }}
   </button>
   <button mat-icon-button (click)="addTab()"><mat-icon>add</mat-icon></button>
