@@ -1,11 +1,21 @@
 <div class="hand-grid">
-  <ng-container *ngFor="let firstCard of cardArray; let x = index">
-    <ng-container *ngFor="let secondCard of cardArray; let y = index;">
-      <button *ngIf="firstCard === secondCard; else: notPair">{{ firstCard + secondCard }}</button>
-      <ng-template #notPair>
-        <button>{{ y > x ? firstCard + secondCard + 's' : secondCard + firstCard + 'o' }}</button>
-      </ng-template>
+  <div class="grid">
+    <ng-container *ngFor="let firstCard of cardArray; let x = index">
+      <ng-container *ngFor="let secondCard of cardArray; let y = index;">
+        <button class="hand" #hand *ngIf="firstCard === secondCard; else: notPair" (mouseenter)="selectHand(hand)" (mousedown)="selectHand(hand, true)">{{ firstCard + secondCard }}</button>
+        <ng-template #notPair>
+          <button class="hand" #hand (mouseenter)="selectHand(hand)" (mousedown)="selectHand(hand, true)">{{ y > x ? firstCard + secondCard + 's' : secondCard + firstCard + 'o' }}</button>
+        </ng-template>
+      </ng-container>
+      <br>
     </ng-container>
-    <br>
-  </ng-container>
+  </div>
+  <div class="options">
+    <button mat-icon-button (click)="selectAll()">
+      <mat-icon>select_all</mat-icon>
+    </button>
+    <button mat-icon-button (click)="clearAll()">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
 </div>

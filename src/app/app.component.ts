@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { MouseService } from './shared/services/mouse/mouse.service';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'poker-tools';
+  @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent): void {
+    this.mouseService.mouseDown();
+  }
+  @HostListener('mouseup', ['$event']) onMouseUp(): void {
+    this.mouseService.mouseUp();
+  }
+
+  constructor(private mouseService: MouseService) {}
 }

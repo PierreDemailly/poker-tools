@@ -1,7 +1,24 @@
-button {
+.hand-grid {
+  display: flex;
+}
+
+.hand {
   height: 30px;
   width: 30px;
   text-align: center;
   padding: 0;
   margin: 1px;
+}
+
+.selected {
+  background: red;
+}
+
+.grid {
+  display: inline-block;
+}
+
+.options {
+  display: inline-flex;
+  flex-direction: column;
 }
