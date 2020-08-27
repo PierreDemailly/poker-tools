@@ -2,7 +2,7 @@
   <button mat-flat-button *ngFor="let range of ranges; let i = index;" [color]="selectedRangeIndex === i ? 'primary' : ''" class="tab">
     {{ range.name }}
   </button>
-  <button mat-icon-button><mat-icon>add</mat-icon></button>
+  <button mat-icon-button (click)="addTab()"><mat-icon>add</mat-icon></button>
 </div>
 <div class="range-info">
   <form [formGroup]="form">
@@ -12,6 +12,6 @@
   </form>
   
 </div>
-<ng-container *ngFor="let range of ranges">
-  <app-hand-grid (change)="onRangeChange($event)" [range]="range.value"></app-hand-grid>
-</ng-container>
+
+<app-hand-grid (change)="onRangeChange($event)" [range]="ranges[selectedRangeIndex].value"></app-hand-grid>
+

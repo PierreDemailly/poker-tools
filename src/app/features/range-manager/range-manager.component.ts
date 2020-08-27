@@ -39,4 +39,9 @@ export class RangeManagerComponent implements OnInit {
   updateLocalRanges(): void {
     localStorage.setItem('ranges', JSON.stringify(this.ranges));
   }
+
+  addTab(): void {
+    this.ranges.push({ name: this.ranges.length + 1, value: [] });
+    this.updateLocalRanges();    
+  }
 }
