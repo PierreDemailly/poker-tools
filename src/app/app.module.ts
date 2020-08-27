@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HandGridComponent } from './shared/components/hand-grid/hand-grid.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HandGridComponent
   ],
   imports: [
     BrowserModule,
