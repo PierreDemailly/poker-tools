@@ -1,8 +1,17 @@
 
 <mat-sidenav-container>
+  <mat-sidenav #sideNavigation class="side-nav" [mode]="(isMobile || isTablet) ? 'over' : 'side'" [opened]="isDesktop">
+     MENU
+  </mat-sidenav>
   <mat-sidenav-content class="content">
-    <mat-toolbar color="primary">Poker tools</mat-toolbar>
-    <app-hand-grid></app-hand-grid>
-    <router-outlet></router-outlet>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sideNavigation.toggle()" class="menu-btn">
+        <mat-icon>{{ sideNavigation.opened ? 'close' : 'menu' }}</mat-icon>
+      </button>
+      Poker tools
+    </mat-toolbar>
+    <div class="padding">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
