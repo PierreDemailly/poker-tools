@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RangeManagerComponent } from './features/range-manager/range-manager.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,10 +24,13 @@ import { RangeManagerComponent } from './features/range-manager/range-manager.co
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

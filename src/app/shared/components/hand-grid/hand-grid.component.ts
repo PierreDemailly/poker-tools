@@ -1,6 +1,6 @@
 import { MouseService } from './../../services/mouse/mouse.service';
 import { HandGridService } from './../../services/hand-grid/hand-grid.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-hand-grid',
@@ -10,6 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class HandGridComponent implements OnInit {
   isMouseDown = false;
   cardArray = Array.from(Array(13), (_, index) => this.handGridService.getCardSymbolFromIndex(index)).reverse();
+
+  @Input() range: string[];
+  @Output() change = new EventEmitter<string[]>();
 
   constructor(
     private handGridService: HandGridService,
@@ -27,6 +30,8 @@ export class HandGridComponent implements OnInit {
     const isSelected = btn.classList.contains('selected');
     if (isSelected) btn.classList.remove('selected');
     else btn.classList.add('selected');
+
+    this.emitChanges();
   }
 
   selectAll(): void {
@@ -35,6 +40,8 @@ export class HandGridComponent implements OnInit {
       if (hand.classList.contains('selected')) continue;
       hand.classList.add('selected');
     }
+
+    this.emitChanges(hands);
   }
 
   clearAll(): void {
@@ -42,5 +49,13 @@ export class HandGridComponent implements OnInit {
     for (const hand of hands) {
       hand.classList.remove('selected');
     }
+
+    this.emitChanges(hands);
+  }
+
+  emitChanges(hands?: HTMLButtonElement[]): void {
+    if (!hands) hands = document.getElementsByClassName('hand') as unknown as HTMLButtonElement[];
+    const selectedHands = Array.from(hands).filter(hand => hand.classList.contains('selected')).map(hand => hand.innerHTML.trim());
+    this.change.emit(selectedHands);
   }
 }

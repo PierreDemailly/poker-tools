@@ -1,10 +1,24 @@
+{{ range | json }}
 <div class="hand-grid">
   <div class="grid">
     <ng-container *ngFor="let firstCard of cardArray; let x = index">
       <ng-container *ngFor="let secondCard of cardArray; let y = index;">
-        <button class="hand" #hand *ngIf="firstCard === secondCard; else: notPair" (mouseenter)="selectHand(hand)" (mousedown)="selectHand(hand, true)">{{ firstCard + secondCard }}</button>
+        <button class="hand"
+                #hand
+                *ngIf="firstCard === secondCard; else: notPair"
+                (mouseenter)="selectHand(hand)"
+                (mousedown)="selectHand(hand, true)"
+                [ngClass]="{ 'selected': range.includes(firstCard + secondCard) }">
+          {{ firstCard + secondCard }}
+        </button>
         <ng-template #notPair>
-          <button class="hand" #hand (mouseenter)="selectHand(hand)" (mousedown)="selectHand(hand, true)">{{ y > x ? firstCard + secondCard + 's' : secondCard + firstCard + 'o' }}</button>
+          <button class="hand"
+                  #hand
+                  (mouseenter)="selectHand(hand)"
+                  (mousedown)="selectHand(hand, true)"
+                  [ngClass]="{ 'selected': range.includes(y > x ? firstCard + secondCard + 's' : secondCard + firstCard + 'o') }">
+            {{ y > x ? firstCard + secondCard + 's' : secondCard + firstCard + 'o' }}
+          </button>
         </ng-template>
       </ng-container>
       <br>

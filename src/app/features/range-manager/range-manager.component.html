@@ -1,1 +1,17 @@
-<p>range-manager works!</p>
+<div class="tabs">
+  <button mat-flat-button *ngFor="let range of ranges; let i = index;" [color]="selectedRangeIndex === i ? 'primary' : ''" class="tab">
+    {{ range.name }}
+  </button>
+  <button mat-icon-button><mat-icon>add</mat-icon></button>
+</div>
+<div class="range-info">
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input matInput formControlName="name">
+    </mat-form-field>
+  </form>
+  
+</div>
+<ng-container *ngFor="let range of ranges">
+  <app-hand-grid (change)="onRangeChange($event)" [range]="range.value"></app-hand-grid>
+</ng-container>
