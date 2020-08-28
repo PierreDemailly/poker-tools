@@ -14,7 +14,7 @@
 
 <div class="grid">
   <mat-nav-list class="folders">
-    <a mat-list-item *ngFor="let folder of ranges[selectedRangeIndex].folders; let i = index;" (click)="selectFolder(i)">{{ folder.name }}</a>
+    <a mat-list-item *ngFor="let folder of ranges[selectedRangeIndex].folders; let i = index;" (click)="selectFolder(i)" [ngClass]="{ 'active': selectedFolderIndex === i }">{{ folder.name }}</a>
     <mat-divider></mat-divider>
     <a mat-list-item (click)="addFolder()">Add a folder</a>
   </mat-nav-list>
