@@ -10,14 +10,6 @@
     {{ range.name }}
   </button>
   <button mat-icon-button (click)="addTab()"><mat-icon>add</mat-icon></button>
-
-  <div class="range-info">
-    <form [formGroup]="form">
-      <mat-form-field>
-        <input matInput formControlName="name">
-      </mat-form-field>
-    </form>
-  </div>
 </div>
 
 <div class="grid">
@@ -27,5 +19,17 @@
     <a mat-list-item (click)="addFolder()">Add a folder</a>
   </mat-nav-list>
   <app-hand-grid (change)="onRangeChange($event)" [range]="ranges[selectedRangeIndex].folders[selectedFolderIndex].value"></app-hand-grid>
+  <mat-card>
+    <form [formGroup]="form">
+      <mat-form-field class="full-width">
+        <mat-label>Range's name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Range's folder</mat-label>
+        <input matInput formControlName="folder">
+      </mat-form-field>
+    </form>
+  </mat-card>
 </div>
 

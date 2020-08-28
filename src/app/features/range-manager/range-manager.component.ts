@@ -23,12 +23,23 @@ export class RangeManagerComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       name: [this.ranges[0].name],
+      folder: [this.ranges[0].folders[0].name],
     });
 
     this.form.get('name').valueChanges.subscribe(value => {
       this.ranges[this.selectedRangeIndex].name = value;
       this.updateLocalRanges();
-    })
+    });
+
+    this.form.get('folder').valueChanges.subscribe(value => {
+      this.ranges[this.selectedRangeIndex].folders[this.selectedFolderIndex].name = value;
+      this.updateLocalRanges();
+    });
+  }
+
+  updateFormValues(): void {
+    this.form.get('name').setValue(this.ranges[this.selectedRangeIndex].name);
+    this.form.get('folder').setValue( this.ranges[this.selectedRangeIndex].folders[this.selectedFolderIndex].name);
   }
 
   onRangeChange(range: string[]): void {
@@ -54,10 +65,12 @@ export class RangeManagerComponent implements OnInit {
   // TODO: type
   selectFolder(i: any): void {
     this.selectedFolderIndex = i;
+    this.updateFormValues();
   }
 
   selectTab(i: number): void {
     this.selectedRangeIndex = i;
     this.selectedFolderIndex = 0;
+    this.updateFormValues();
   }
 }
