@@ -27,3 +27,17 @@
 .full-width {
   width: 100%;
 }
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom {
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.mb {
+  margin-bottom: 6px;
+}

@@ -73,4 +73,16 @@ export class RangeManagerComponent implements OnInit {
     this.selectedFolderIndex = 0;
     this.updateFormValues();
   }
+
+  deleteRange(): void {
+    this.ranges.splice(this.selectedRangeIndex, 1);
+    this.selectedRangeIndex = 0;
+    this.updateFormValues();
+  }
+
+  deleteFolder(): void {
+    this.ranges[this.selectedRangeIndex].folders.splice(this.selectedFolderIndex, 1);
+    this.selectedFolderIndex = 0;
+    this.updateFormValues();
+  }
 }
