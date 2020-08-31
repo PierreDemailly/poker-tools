@@ -4,7 +4,7 @@
 <div class="tabs">
   <button mat-flat-button
           *ngFor="let range of ranges; let i = index;"
-          [color]="selectedRangeIndex === i ? 'primary' : ''"
+          [color]="selectedRangeIndex === i ? 'primary' : undefined"
           class="tab"
           (click)="selectTab(i)">
     {{ range.name }}
@@ -26,12 +26,16 @@
     <mat-card-content>
       <form [formGroup]="form">
         <mat-form-field class="full-width">
-          <mat-label>Range's name</mat-label>
-          <input matInput formControlName="name">
+          <label>
+            <mat-label>Range's name</mat-label>
+            <input matInput formControlName="name">
+          </label>
         </mat-form-field>
         <mat-form-field class="full-width">
-          <mat-label>Range's folder</mat-label>
-          <input matInput formControlName="folder">
+          <label>
+            <mat-label>Range's folder</mat-label>
+            <input matInput formControlName="folder">
+          </label>
         </mat-form-field>
       </form>
     </mat-card-content>
