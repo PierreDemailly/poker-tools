@@ -1,5 +1,5 @@
-import { MouseService } from './../../services/mouse/mouse.service';
-import { HandGridService } from './../../services/hand-grid/hand-grid.service';
+import { MouseService } from '../../services/mouse/mouse.service';
+import { HandGridService } from '../../services/hand-grid/hand-grid.service';
 import { Component, OnInit, Output, EventEmitter, Input, ViewChildren, QueryList, ElementRef } from '@angular/core';
 
 @Component({
