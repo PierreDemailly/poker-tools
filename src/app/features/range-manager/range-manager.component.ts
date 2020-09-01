@@ -17,7 +17,9 @@ export class RangeManagerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (!localStorage.getItem('ranges')) localStorage.setItem('ranges', JSON.stringify([{ name: 'default', folders: [{ name: 'default', value: [] }] }]));
+    if (!localStorage.getItem('ranges')) {
+      localStorage.setItem('ranges', JSON.stringify([{ name: 'default', folders: [{ name: 'default', value: [] }] }]));
+    }
     this.ranges = JSON.parse(localStorage.getItem('ranges'));
     console.log(this.ranges);
 
@@ -55,7 +57,7 @@ export class RangeManagerComponent implements OnInit {
     this.ranges.push({ name: this.ranges.length + 1, folders: [
       { name: 'default', value: [] },
     ] });
-    this.updateLocalRanges();    
+    this.updateLocalRanges();
   }
 
   addFolder(): void {

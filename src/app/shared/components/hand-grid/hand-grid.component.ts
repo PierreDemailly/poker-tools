@@ -12,7 +12,7 @@ export class HandGridComponent implements OnInit {
   cardArray = Array.from(Array(13), (_, index) => this.handGridService.getCardSymbolFromIndex(index)).reverse();
 
   @Input() range: string[];
-  @Output() change = new EventEmitter<string[]>();
+  @Output() rangeChange = new EventEmitter<string[]>();
   @ViewChildren('hand') hands: QueryList<ElementRef<HTMLButtonElement>>;
 
   constructor(
@@ -23,23 +23,21 @@ export class HandGridComponent implements OnInit {
   // TODO: scavenger
   ngOnInit(): void {
     this.mouseService.isMouseDown$.subscribe(bool => this.isMouseDown = bool);
-    
-    
   }
 
   selectHand(btn: HTMLButtonElement, isClick = false): void {
-    if (!isClick && !this.isMouseDown) return;
-    
+    if (!isClick && !this.isMouseDown) { return; }
+
     const isSelected = btn.classList.contains('selected');
-    if (isSelected) btn.classList.remove('selected');
-    else btn.classList.add('selected');
+    if (isSelected) { btn.classList.remove('selected'); }
+    else { btn.classList.add('selected'); }
 
     this.emitChanges();
   }
 
   selectAll(): void {
     for (const hand of this.hands) {
-      if (hand.nativeElement.classList.contains('selected')) continue;
+      if (hand.nativeElement.classList.contains('selected')) { continue; }
       hand.nativeElement.classList.add('selected');
     }
 
@@ -55,7 +53,9 @@ export class HandGridComponent implements OnInit {
   }
 
   emitChanges(): void {
-    const selectedHands = Array.from(this.hands).filter(hand => hand.nativeElement.classList.contains('selected')).map(hand => hand.nativeElement.innerHTML.trim());
-    this.change.emit(selectedHands);
+    const selectedHands = Array.from(this.hands)
+                               .filter(hand => hand.nativeElement.classList.contains('selected'))
+                               .map(hand => hand.nativeElement.innerHTML.trim());
+    this.rangeChange.emit(selectedHands);
   }
 }

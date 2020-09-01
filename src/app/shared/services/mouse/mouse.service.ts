@@ -10,7 +10,7 @@ export class MouseService {
   constructor() { }
 
   mouseDown(): void {
-    if (this.isMouseDown$.getValue()) return;
+    if (this.isMouseDown$.getValue()) { return; }
     this.isMouseDown$.next(true);
   }
 
