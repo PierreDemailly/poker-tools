@@ -26,6 +26,6 @@
     <mat-divider></mat-divider>
     <a mat-list-item (click)="addFolder()">Add a folder</a>
   </mat-nav-list>
-  <app-hand-grid (change)="onRangeChange($event)" [range]="ranges[selectedRangeIndex].folders[selectedFolderIndex].value"></app-hand-grid>
+  <app-hand-grid (rangeChange)="onRangeChange($event)" [range]="ranges[selectedRangeIndex].folders[selectedFolderIndex].value"></app-hand-grid>
 </div>
 

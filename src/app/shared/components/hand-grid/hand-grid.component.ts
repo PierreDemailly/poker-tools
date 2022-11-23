@@ -12,7 +12,7 @@ export class HandGridComponent implements OnInit {
   cardArray = Array.from(Array(13), (_, index) => this.handGridService.getCardSymbolFromIndex(index)).reverse();
 
   @Input() range: string[];
-  @Output() change = new EventEmitter<string[]>();
+  @Output() rangeChange = new EventEmitter<string[]>();
   @ViewChildren('hand') hands: QueryList<ElementRef<HTMLButtonElement>>;
 
   constructor(
